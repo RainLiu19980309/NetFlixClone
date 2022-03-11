@@ -7,7 +7,6 @@ Use Node, Express, SQL and the Vue CLI to create the codebase for the app. Creat
 1. Clone the repo
 ```sh
 git clone git@github.com:RainLiu19980309/NetFlixClone.git
-git clone git@github.com:RainLiu19980309/Roku_Flashback.git
 ```
 2. Install NPM packages
 ```sh
@@ -22,7 +21,8 @@ node app
 ```sh
 http://localhost:8080/
 http://localhost:3000/
-http://localhost:8888/Roku_Flashback/api/index.php/
+
+http://localhost:8888/NetFlixClone/Roku_Flashback/api/index.php/
 ```
 
 ## Author

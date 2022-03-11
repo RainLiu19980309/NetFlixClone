@@ -14,6 +14,29 @@ let pool = sql.createPool({
     port: 8889 // windows/linux: 3306
 })
 
+router.get('/getone/:user', (req, res) => {
+    console.log(req.params.user);
+
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+
+        let currentUser = req.params.user;
+            loginResult = {};
+
+        let query = `SELECT first_name FROM user WHERE first_name="${currentUser}"`;
+
+        connection.query(query, (err, user) => {
+            connection.release();
+            
+            if (err) throw err;
+
+            console.log(user);
+
+            res.json(user);
+        })
+    })
+})
+
 // this route handler will match with any /users api call
 router.get('/getall', (req, res) => {
     pool.getConnection((err, connection) => {
