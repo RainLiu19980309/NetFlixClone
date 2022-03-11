@@ -1,3 +1,8 @@
+const BASE_URL = "http://localhost:3000";
+
+// add the API endpoint
+const API_URL  = "http://localhost:8888/NetFlixClone/Roku_Flashback/api/index.php"
+
 module.exports = {
   css: {
     loaderOptions: {
@@ -14,13 +19,13 @@ module.exports = {
   devServer: {
     proxy: {
       '/users': {
-        target: "http://localhost:3000",
+        target: `${BASE_URL}`,
         changeOrigin: true,
         pathRewrite: { '^users': ''}
       },
 
       '/movies': {
-        target: "http://localhost:8888/Roku_Flashback/api/index.php",
+        target: `${API_URL}`,
         changeOrigin: true,
         pathRewrite: { '^/movies': ''}
       }
