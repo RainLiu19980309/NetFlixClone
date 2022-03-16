@@ -14,6 +14,10 @@ let pool = sql.createPool({
     port: 8889 // windows/linux: 3306
 })
 
+// a router with /:text is a dynamic route
+// what comes after the colon is a route parameter
+// can be used like a variable in your JS code
+
 router.get('/getone/:user', (req, res) => {
     console.log(req.params.user);
 
