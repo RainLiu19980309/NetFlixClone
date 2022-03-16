@@ -1,4 +1,5 @@
 const BASE_URL = "http://localhost:3000";
+const UMS_PATH = "/users";
 
 // add the API endpoint
 const API_URL  = "http://localhost:8888/NetFlixClone/Roku_Flashback/api/index.php"
@@ -19,9 +20,9 @@ module.exports = {
   devServer: {
     proxy: {
       '/users': {
-        target: `${BASE_URL}`,
+        target: `${BASE_URL + UMS_PATH}`,
         changeOrigin: true,
-        pathRewrite: { '^users': ''}
+        pathRewrite: { '^/users': ''}
       },
 
       '/movies': {
