@@ -7,6 +7,9 @@
         </p>
     </div>
 
+    <h2 class="login-flash" v-if="signup">{{ flash }}</h2>
+    <h2 class="login-flash" v-if="errors">{{ flash }}</h2>
+
     <section class="log-in">
       <label class="sr-only" for="inlineFormInputName">Name</label>
       <input v-model="username" type="text" class="form-control" id="inlineFormInputName" placeholder="username" required>
@@ -16,9 +19,17 @@
     </section>
 
     <button
+        v-if="signup"
+        type="submit" 
+        class="btn btn-primary login-submit signup"
+        @click="trySignUp"
+      >Sign Up!
+    </button>
+
+    <button
         type="submit" 
         class="btn btn-primary login-submit"
-        @click="tryLogin"
+        @click="login"
       >Go!
     </button>
   </section>
@@ -31,37 +42,76 @@ export default {
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      url: 'users/getone',
+      signup: false,
+      errors: false,
+      flash: ''
     }
   },
 
   methods: {
     tryLogin() {
-      // and use the route to show the next view 
-      // TODO => should happen on successful login
-      this.$router.push({ name: 'UserSelect' })
+      this.url = '/users/getone';
+      this.login();
+    },
 
+    trySignUp() {
+      this.url = '/users/signup';
+      this.login();
+    },
 
-      // mock up the login functionality -> formData is a virual <form> element's data
-      /*let formData = new FormData();
+    goToUsers(time, vm) {
+      setTimeout(function() {
+        vm.$emit('setauth', true);
+        vm.$router.push({ name: 'UserSelect' });
+      }, time);
+    },
 
-      formData.append("username", this.username);
-      formData.append("password", this.password);
+    login() {
+      //formData is a virual <form> element's data
+      let formData = { username: this.username, password: this.password };
 
       // pass the form data to our login API
-      let url = 'someloginurl';
+      let url = this.url;
 
       fetch(url, {
         method: 'POST',
-        body: formData
+        headers: {
+          "Content-type" : "application/json"
+        },
+        body: JSON.stringify(formData)
       })
         .then(res => res.json())
-        .then(data => console.table(data))
-      .catch(err => console.error(err));*/
+        .then(data => {
+          console.table(data);
+
+          switch (data.action) {
+            case 'add': // user doesn't exist
+              this.signup = true;
+              this.username = '';
+              this.password = '';
+              this.flash = `Hmmm... your username doesn't seem to exist. Do you want to sign up? Or you can try again.`;
+              break;
+
+            case 'added':
+              this.flash = 'Added you to Roku Flashback! Enjoy! ... redirecting ....';
+              this.goToUsers(2500, this);
+              break;
+
+            case 'retry': // wrong password
+              document.querySelector(`input[type=${data.field}]`).classList.add('error');
+              this.errors = true;
+              this.flash = `Your login info is not correct. Please retry.`;
+              break;
+
+            default: // authentication worked, go to userselect page
+              this.goToUsers(0, this);
+          }
+        })
+      .catch(err => console.error(err));
     }
   }
-
-
 }
 </script>
 
