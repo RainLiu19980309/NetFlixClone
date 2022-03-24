@@ -10,14 +10,31 @@ body {
 }
 
 .roku-header {
-   background-color: #333;
-   padding: 0.75em 1.5em;
-   margin-bottom: 2em;
+    background-color: #333;
+    padding: 0.75em 1.5em;
+    margin-bottom: 2em;
 
-   span { 
+    span {
         font-family: 'Vujahday Script', cursive;
         font-size: 3.5em;
         position: relative;
         top: -2px;
+    }
+
+    nav {
+        ul {
+            display: flex;
+            font-size: 1.4em;
+            padding-top: 0.8em;
+    
+            li {
+                margin-right: 0.35em;
+                cursor: pointer;
+    
+                :hover {
+                    color: rgb(117, 194, 117);
+                }
+            }
+        }
     }
 }

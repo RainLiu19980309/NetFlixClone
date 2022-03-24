@@ -41,6 +41,18 @@ export default {
     },
 
     created() {
+        // store this user's info in the localStorage object
+        let currentUser = {
+            first_name: this.first_name,
+            role: this.role,
+            permissions: this.permissions,
+            avatar: this.avatar
+        }
+
+        if(window.localStorage) {
+            localStorage.setItem('user', JSON.stringify(currentUser));
+        }
+
         fetch('/movies')
             .then(res => res.json())
             .then(data => { 

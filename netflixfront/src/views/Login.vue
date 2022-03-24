@@ -64,6 +64,7 @@ export default {
     goToUsers(time, vm) {
       setTimeout(function() {
         vm.$emit('setauth', true);
+        // redirect to the UserSelect view
         vm.$router.push({ name: 'UserSelect' });
       }, time);
     },
