@@ -1,7 +1,7 @@
-<?php 
-    $db_dsn = array( 
+<?php
+    $db_dsn = array(
         'host' => 'localhost', // this will change when you go live
-        'dbname' => 'Roku_Flashback', // update this with your database name
+        'dbname' => 'db_roku_flashback', // update this with your database name
         'charset' => 'utf8'
     );
 
@@ -17,7 +17,7 @@
         // var_dump($pdo);
         // echo (in this case) is almost like console.log
         // echo "you're in! enjoy the show";
-    } catch (PDOException $exception){
+    } catch (PDOException $exception) {
         echo 'Connection Error:'.$exception->getMessage();
         exit();
     }
