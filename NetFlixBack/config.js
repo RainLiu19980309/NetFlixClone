@@ -2,5 +2,5 @@ module.exports = {
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'users'
+    database: 'db_users'
 }
