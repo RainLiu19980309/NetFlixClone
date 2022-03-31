@@ -70,7 +70,7 @@ export default {
     },
 
     login() {
-      //formData is a virual <form> element's data
+      // formData is a virual <form> element's data
       let formData = { username: this.username, password: this.password };
 
       // pass the form data to our login API
