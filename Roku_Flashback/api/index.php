@@ -1,13 +1,6 @@
 <?php
   // route requests for CRUD
   require('../config/connect.php');
-// this needs to come back out once the post is working
-// this is demo only
-
-  if (isset($_POST['username'])) {
-      echo 'username via POST:' . $_POST["username"];
-      die('  ...and imma stop here');
-  }
 
   $query = "SELECT * FROM tbl_movies";
 
