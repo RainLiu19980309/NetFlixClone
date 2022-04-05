@@ -14,7 +14,7 @@
       <label class="sr-only" for="inlineFormInputName">Name</label>
       <input v-model="username" type="text" class="form-control" id="inlineFormInputName" placeholder="username" required>
 
-      <label class="sr-only" for="inlineFormPassword">Name</label>
+      <label class="sr-only" for="inlineFormPassword">Password</label>
       <input v-model="password" type="password" class="form-control" id="inlineFormPassword" placeholder="password" required>
     </section>
 
